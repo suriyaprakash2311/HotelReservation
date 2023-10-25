@@ -1,24 +1,131 @@
-# Compiled class file
-*.class
+package MyFirstProject;
 
-# Log file
-*.log
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.Test;
 
-# BlueJ files
-*.ctxt
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
 
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+public class HotelReservation {
+  @Test
+	public void RoomBooking() throws InterruptedException {
+		System.setProperty("Webdriver.chrome.driver", "C:\\Users\\karun\\eclipse-workspace\\selenium\\Driver\\chromedriver.exe");
+		
+	ChromeOptions options = new ChromeOptions();
+		options.addArguments("--remote-allow-origins=*");
+		 WebDriver driver = new ChromeDriver(options);
+		 driver.get("https://adactinhotelapp.com/");
+		 driver.manage().window().maximize();
+	
+		 
+		 System.out.println(driver.getCurrentUrl());
+		 System.out.println(driver.getTitle());
+		 
+		WebElement UserName = driver.findElement(By.xpath("//input [@type=\"text\"]"));
+		UserName.sendKeys("suriravi23");
+		Thread.sleep(1000);
+		
+		WebElement Pswrd = driver.findElement(By.xpath("//input[@type =\"password\"]"));
+		Pswrd.sendKeys("Suriravi@23");
+		Thread.sleep(1000);
+		
+	    WebElement logInButton = driver.findElement(By.xpath("//input [@type=\"Submit\"]"));
+	    logInButton.click();
+	    Thread.sleep(1000);
+	    
+	    WebElement selectLocation = driver.findElement(By.id("location"));
+	    selectLocation.sendKeys("London");
+	    Thread.sleep(1000);
+	    
+	    WebElement selectHotels = driver.findElement(By.id("hotels"));
+	    selectHotels.sendKeys("Hotel Sunshine");
+	    Thread.sleep(1000);
+	    
+	    WebElement selectRoomType = driver.findElement(By.id("room_type"));
+	    selectRoomType.sendKeys("Super Deluxe");
+	    Thread.sleep(1000);
+	    
+	    WebElement selectNumOfRooms = driver.findElement(By.id("room_nos"));
+	    selectNumOfRooms.sendKeys("1 - One");
+	    Thread.sleep(1000);
+	    
+	    WebElement selectCheckInDate = driver.findElement(By.id("datepick_in"));
+	    selectCheckInDate.clear();
+	    selectCheckInDate.sendKeys("01/05/2023");
+	    Thread.sleep(1000);
+	    
+	    WebElement selectCheckOutDate = driver.findElement(By.id("datepick_out"));
+	    selectCheckOutDate.clear();
+	    selectCheckOutDate.sendKeys("10/05/2023");
+	    Thread.sleep(1000);
+	    
+	    WebElement selectAdultsperRoom = driver.findElement(By.id("adult_room"));
+	    selectAdultsperRoom.sendKeys("2 - Two");
+	    Thread.sleep(1000);
+	    
+	    WebElement selectSearchButton = driver.findElement(By.id("Submit"));
+	    selectSearchButton.click();
+	    Thread.sleep(1000);
+	    
+	    WebElement selectRadioButton = driver.findElement(By.id("radiobutton_0"));
+	    selectRadioButton.click();
+	    Thread.sleep(1000);
+	    
+	    WebElement selectContinueButton = driver.findElement(By.id("continue"));
+	    selectContinueButton.click();
+	    Thread.sleep(1000);
+	    
+	    WebElement FirstName = driver.findElement(By.id("first_name"));
+	    FirstName.sendKeys("Suriyaprakash");
+	    Thread.sleep(1000);
+	    
+	    WebElement LastName = driver.findElement(By.id("last_name"));
+	    LastName.sendKeys("R");
+	    Thread.sleep(1000);
+	    
+	    WebElement BillingAddress = driver.findElement(By.id("address"));
+	    BillingAddress.sendKeys("No: 22, Kandhasamy Street\r\n" + 
+	    		"Nellikuppam");
+	    Thread.sleep(1000);
+	    
+	    WebElement CreditCardNo = driver.findElement(By.id("cc_num"));
+	    CreditCardNo.sendKeys("9876543210123456");
+	    Thread.sleep(1000);
+	    
+	    WebElement CreditCardType = driver.findElement(By.id("cc_type"));
+	    CreditCardType.sendKeys("VISA");	 
+	    Thread.sleep(1000);
+	    
+	    WebElement ExpiryDate = driver.findElement(By.id("cc_exp_month"));
+	    ExpiryDate.sendKeys("November");
+	    Thread.sleep(1000);
+	    
+	    WebElement ExpiryMonth = driver.findElement(By.id("cc_exp_year"));
+	    ExpiryMonth.sendKeys("2022");
+	    Thread.sleep(1000);
+	    
+	    WebElement CVVNumber = driver.findElement(By.id("cc_cvv"));
+	    CVVNumber.sendKeys("121");
+	    Thread.sleep(1000);
+	    
+	    WebElement BookNow = driver.findElement(By.id("book_now"));
+	    BookNow.click();
+	    Thread.sleep(3000);
+	    
+	 /// WebElement OrderID = driver.findElement(By.id("order_no"));
+	  // OrderID.gett
+	    
+	    String expected = "Adactin.com - Hotel Booking Confirmation";
+	    String actual = driver.getTitle();
+	    if (expected.equals(actual)) {
+	    	System.out.println("Booking confirmed");
+	    }else {
+	    	System.out.println("Booking Failed.");
+	    }
+}
+}
+
